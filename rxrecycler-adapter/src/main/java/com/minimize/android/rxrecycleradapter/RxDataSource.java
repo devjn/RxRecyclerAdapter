@@ -117,12 +117,12 @@ public class RxDataSource<DataType> {
   }
 
   public final RxDataSource<DataType> last() {
-    mDataSet = Observable.fromIterable(mDataSet).lastElement().toFlowable().toList().blockingGet();// last().toList().toBlocking().first();
+    mDataSet = Observable.fromIterable(mDataSet).lastElement().toObservable().toList().blockingGet();// last().toList().toBlocking().first();
     return this;
   }
 
   public final RxDataSource<DataType> last(Predicate<? super DataType> predicate) {
-    mDataSet = Observable.fromIterable(mDataSet).filter(predicate).lastElement().toFlowable().toList().blockingGet();
+    mDataSet = Observable.fromIterable(mDataSet).filter(predicate).lastElement().toObservable().toList().blockingGet();
     return this;
   }
 
@@ -130,7 +130,7 @@ public class RxDataSource<DataType> {
     mDataSet = Observable.fromIterable(mDataSet)
         .takeLast(1)
         .single(defaultValue)
-        .toFlowable()
+        .toObservable()
         .toList()
         .blockingGet();
     return this;
@@ -142,7 +142,7 @@ public class RxDataSource<DataType> {
         .filter(predicate)
         .takeLast(1)
         .single(defaultValue)
-        .toFlowable()
+        .toObservable()
         .toList()
         .blockingGet();
     return this;
@@ -170,7 +170,7 @@ public class RxDataSource<DataType> {
   }
 
   public RxDataSource<DataType> distinct() {
-    mDataSet = Observable.fromIterable(mDataSet).distinct().toList().blockingGet(); //.toFlowable().blockingFirst()
+    mDataSet = Observable.fromIterable(mDataSet).distinct().toList().blockingGet(); //.toObservable().blockingFirst()
     return this;
   }
 
@@ -180,21 +180,21 @@ public class RxDataSource<DataType> {
   }
 
   public final RxDataSource<DataType> elementAt(int index) {
-    mDataSet = Observable.fromIterable(mDataSet).elementAt(index).toFlowable().toList().blockingGet();
+    mDataSet = Observable.fromIterable(mDataSet).elementAt(index).toObservable().toList().blockingGet();
     return this;
   }
 
   public final RxDataSource<DataType> elementAtOrDefault(int index, DataType defaultValue) {
     mDataSet = Observable.fromIterable(mDataSet)
         .elementAt(index, defaultValue)
-        .toFlowable()
+        .toObservable()
         .toList()
         .blockingGet();
     return this;
   }
 
   public final RxDataSource<DataType> first() {
-    mDataSet = Observable.fromIterable(mDataSet).firstElement().toFlowable().toList().blockingGet();
+    mDataSet = Observable.fromIterable(mDataSet).firstElement().toObservable().toList().blockingGet();
     return this;
   }
 
@@ -204,7 +204,7 @@ public class RxDataSource<DataType> {
   }
 
   public final RxDataSource<DataType> firstOrDefault(DataType defaultValue) {
-    mDataSet = Observable.fromIterable(mDataSet).first(defaultValue).toFlowable().toList().blockingGet();
+    mDataSet = Observable.fromIterable(mDataSet).first(defaultValue).toObservable().toList().blockingGet();
     return this;
   }
 
@@ -212,7 +212,7 @@ public class RxDataSource<DataType> {
         mDataSet = Observable.fromIterable(mDataSet)
                 .filter(predicate)
                 .first(defaultValue)
-                .toFlowable()
+                .toObservable()
                 .toList()
                 .blockingGet();
         return this;
@@ -271,14 +271,14 @@ public class RxDataSource<DataType> {
   }
 
   public final RxDataSource<DataType> reduce(BiFunction<DataType, DataType, DataType> accumulator) {
-    mDataSet = Observable.fromIterable(mDataSet).reduce(accumulator).toFlowable().toList().blockingGet();
+    mDataSet = Observable.fromIterable(mDataSet).reduce(accumulator).toObservable().toList().blockingGet();
     return this;
   }
 
   public final RxDataSource<DataType> reduce(DataType initialValue,
                                              BiFunction<DataType, ? super DataType, DataType> accumulator) {
     mDataSet =
-        Observable.fromIterable(mDataSet).reduce(initialValue, accumulator).toFlowable().toList().blockingGet();
+        Observable.fromIterable(mDataSet).reduce(initialValue, accumulator).toObservable().toList().blockingGet();
     return this;
   }
 
@@ -299,7 +299,7 @@ public class RxDataSource<DataType> {
   }
 
   public final RxDataSource<DataType> takeFirst(Predicate<? super DataType> predicate) {
-    mDataSet = Observable.fromIterable(mDataSet).filter(predicate).firstElement().toFlowable().toList().blockingGet();
+    mDataSet = Observable.fromIterable(mDataSet).filter(predicate).firstElement().toObservable().toList().blockingGet();
     return this;
   }
 
