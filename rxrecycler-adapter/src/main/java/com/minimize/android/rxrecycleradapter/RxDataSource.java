@@ -106,6 +106,22 @@ public class RxDataSource<DataType> {
     }
   }
 
+    public void updateNotifyInsertedAdapter(int startPosition, int count) {
+        if (mRxAdapter != null) {
+            mRxAdapter.updateInsertedDataSet(mDataSet, startPosition, count);
+        } else if (mRxAdapterForTypes != null) {
+            mRxAdapterForTypes.updateDataSet(mDataSet);
+        }
+    }
+
+    public void updateNotifyRemovedAdapter(int startPosition, int count) {
+        if (mRxAdapter != null) {
+            mRxAdapter.updateRemovedDataSet(mDataSet, startPosition, count);
+        } else if (mRxAdapterForTypes != null) {
+            mRxAdapterForTypes.updateDataSet(mDataSet);
+        }
+    }
+
   public RxDataSource<DataType> map(Function<? super DataType, ? extends DataType> func) {
     mDataSet = Observable.fromIterable(mDataSet).map(func).toList().blockingGet();
     return this;
